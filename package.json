@@ -1,0 +1,27 @@
+{
+  "name": "simple-toaster",
+  "version": "0.1.0",
+  "description": "Simple toast message display implemented in plain javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdgeJay/simple-toaster.git"
+  },
+  "keywords": [
+    "javascript",
+    "toast",
+    "toaster",
+    "alert",
+    "message",
+    "popup"
+  ],
+  "author": "Wu Huijie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EdgeJay/simple-toaster/issues"
+  },
+  "homepage": "https://github.com/EdgeJay/simple-toaster#readme"
+}
