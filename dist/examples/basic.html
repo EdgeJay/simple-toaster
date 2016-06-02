@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Toaster Basic Example</title>
+    <style>
+      body {
+        font-family: Helvetica, Verdana, Arial, sans-serif;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="#" id="default-alert">Default alert</a></li>
+      <li><a href="#" id="default-alert-autohide">Default alert with autohide</a></li>
+    </ul>
+    <script src="../toaster.js"></script>
+    <script>
+      var toaster = new Toaster();
+
+      document.getElementById('default-alert').addEventListener('click', function (evt) {
+        evt.preventDefault();
+        toaster.createAlert('This is a message.');
+      });
+
+      document.getElementById('default-alert-autohide').addEventListener('click', function (evt) {
+        evt.preventDefault();
+        toaster.createAlert('This is a message with autohide.').hideAfterDelay(100000);
+      });
+    </script>
+  </body>
+</html>

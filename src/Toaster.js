@@ -1,7 +1,14 @@
 'use strict';
 
-class Toaster {
-    constructor() {
+import stylesheet from './toaster.css';
+
+const defaultConfig = {
+    offsetTop: 0
+};
+
+export default class Toaster {
+    constructor(config = {}) {
+        this.setConfig(config);
         this._nodeContainer = null;
         this._toasts = [];
         this._onToastHidden = this._onToastHidden.bind(this);
@@ -11,11 +18,21 @@ class Toaster {
         if (!this._nodeContainer) {
             this._nodeContainer = document.createElement('DIV');
             this._nodeContainer.classList.add('toasts');
+            this._nodeContainer.style.top = `${this._config.offsetTop}px`;
             document.body.appendChild(this._nodeContainer);
         }
     }
 
-    createAlert(message, alertType) {
+    setConfig(config = {}) {
+        this._config = Object.assign({}, config);
+        this._applyConfig();
+    }
+
+    _applyConfig() {
+
+    }
+
+    createAlert(message, alertType = Toaster.AlertTypes.INFO) {
         this._initContainer();
 
         let toast = new Toast(message, alertType);
@@ -68,21 +85,22 @@ class Toast {
 
         let alertNode = document.createElement('DIV');
         alertNode.classList.add('toast');
-        alertNode.classList.add('alert');
         alertNode.classList.add(alertType);
 
         let p = document.createElement('P');
         p.innerHTML = `${message}`;
         alertNode.appendChild(p);
 
+        /*
         let a = document.createElement('A');
         a.href = '#';
-        a.innerHTML = `<i class="icon-cancel"></i>`;
+        a.innerHTML = `&times;`;
         a.addEventListener('click', evt => {
             evt.preventDefault();
             this.close();
         });
         alertNode.appendChild(a);
+        */
 
         this._node = document.createElement('DIV');
         this._node.classList.add('toast-wrapper');
@@ -156,11 +174,8 @@ class Toast {
 }
 
 Toaster.AlertTypes = {
-    SUCCESS: 'alert-success',
-    INFO: 'alert-info',
-    WARNING: 'alert-warning',
-    DANGER: 'alert-danger'
+    SUCCESS   : 'success',
+    INFO      : 'info',
+    WARNING   : 'warning',
+    DANGER    : 'danger'
 };
-
-window.__Toaster = Toaster;
-export default Toaster;

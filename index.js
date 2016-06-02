@@ -1,3 +1,4 @@
 'use strict';
 
-export default Toaster from './src/Toaster';
+export Toaster from './src/Toaster';
+window.Toaster = exports.Toaster;

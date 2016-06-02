@@ -1,0 +1,105 @@
+$toast-padding:               15px;
+$toast-border-radius:         5px;
+$toast-border-width:          1px;
+
+$toast-success-bg:            #dff0d8;
+$toast-success-text:          #3c763d;
+$toast-success-border:        darken($toast-success-bg, 5%);
+
+$toast-info-bg:               #d9edf7;
+$toast-info-text:             #31708f;
+$toast-info-border:           darken($toast-info-bg, 7%);
+
+$toast-warning-bg:            #fcf8e3;
+$toast-warning-text:          #8a6d3b;
+$toast-warning-border:        darken($toast-warning-bg, 5%);
+
+$toast-danger-bg:             #f2dede;
+$toast-danger-text:           #a94442;
+$toast-danger-border:         darken($toast-danger-bg, 5%);
+
+@mixin toast-variant($background, $border, $body-color) {
+  background-color: $background;
+  border-color: $border;
+  color: $body-color;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  .toast-link {
+    color: darken($body-color, 10%);
+  }
+}
+
+.toasts {
+  position: fixed;
+  z-index: 10000;
+  left: 50%;
+  top: 0;
+  text-align: center;
+
+  .toast-wrapper {
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+    transition: all 0.5s ease;
+
+    &.hide {
+      margin-top: -20px;
+      opacity: 0;
+    }
+  }
+
+  .toast {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 5px 10px;
+    border-radius: 14px;
+    padding: $toast-padding;
+    border: $toast-border-width solid transparent;
+    border-radius: $toast-border-radius;
+
+    p {
+      margin: 0;
+    }
+
+    > p,
+    > ul {
+      margin-bottom: 0;
+    }
+
+    > p + p {
+      margin-top: 5px;
+    }
+
+    p, a {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      margin-left: 5px;
+    }
+
+    &.success {
+      @include toast-variant($toast-success-bg, $toast-success-border, $toast-success-text);
+    }
+
+    &.info {
+      @include toast-variant($toast-info-bg, $toast-info-border, $toast-info-text);
+    }
+
+    &.warning {
+      @include toast-variant($toast-warning-bg, $toast-warning-border, $toast-warning-text);
+    }
+
+    &.danger {
+      @include toast-variant($toast-danger-bg, $toast-danger-border, $toast-danger-text);
+    }
+  }
+
+  .toast-link {
+    font-weight: bold;
+  }
+}

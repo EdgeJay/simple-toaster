@@ -29,7 +29,7 @@ gulp.task('webpack', function () {
                 toaster: './index.js'
             },
             output: {
-                filename: '[name].js'
+                filename: (process.env.NODE_ENV === 'production' ? '[name].min.js' : '[name].js')
             },
             module: {
                 loaders: [{
@@ -60,7 +60,9 @@ gulp.task('webpack', function () {
 
 gulp.task('watch', function () {
     gulp.watch(['./src/**/*.scss'], ['sass-webpack']);
-    gulp.watch(['./src/**/*.js'], ['webpack']);
+    gulp.watch(['./index.js', './src/**/*.js'], ['webpack']);
 });
 
-gulp.task('default', ['sass-webpack']);
+gulp.task('default', function (callback) {
+    runSeq('sass-webpack', 'watch', callback);
+});

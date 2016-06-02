@@ -4,6 +4,7 @@
   "description": "Simple toast message display implemented in plain javascript",
   "main": "index.js",
   "scripts": {
+    "examples": "./node_modules/.bin/servedir ./dist 9090",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +32,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-wait": "0.0.2",
     "run-sequence": "^1.1.5",
+    "servedir": "^1.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13",
     "webpack-stream": "^3.1.0"
